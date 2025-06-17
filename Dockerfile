@@ -22,9 +22,9 @@ RUN <<-"EOF" bash
     rm -rf "$toolchain"/lib/gcc/arm-none-eabi/13.3.1/arm
     rm -f "$toolchain"/bin/arm-none-eabi-{gdb,gdb-py,cpp,gcc-13.3.1}
     
-    find "$toolchain"/arm-none-eabi/lib/thumb                              -mindepth 1 -maxdepth 1 ! -name 'v7-a+fp' -exec rm -rf {} +
-    find "$toolchain"/lib/gcc/arm-none-eabi/13.3.1/thumb                   -mindepth 1 -maxdepth 1 ! -name 'v7-a+fp' -exec rm -rf {} +
-    find "$toolchain"/arm-none-eabi/include/c++/13.3.1/arm-none-eabi/thumb -mindepth 1 -maxdepth 1 ! -name 'v7-a*' -exec rm -rf {} + 
+    find "$toolchain"/arm-none-eabi/lib/thumb                              -mindepth 1 -maxdepth 1 ! -name 'v7-a+simd/hard' -exec rm -rf {} +
+    find "$toolchain"/lib/gcc/arm-none-eabi/13.3.1/thumb                   -mindepth 1 -maxdepth 1 ! -name 'v7-a+simd/hard' -exec rm -rf {} +
+    find "$toolchain"/arm-none-eabi/include/c++/13.3.1/arm-none-eabi/thumb -mindepth 1 -maxdepth 1 ! -name 'v7-a+simd/hard' -exec rm -rf {} + 
 
     apk cache clean # Cleanup image
 EOF
