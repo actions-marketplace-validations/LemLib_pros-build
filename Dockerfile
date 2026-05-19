@@ -41,11 +41,12 @@ LABEL org.opencontainers.image.source=https://github.com/lemlib/pros-build
 LABEL org.opencontainers.image.licenses=MIT
 # Copy dependencies from get-dependencies stage
 COPY --from=get-dependencies /arm-none-eabi-toolchain /arm-none-eabi-toolchain
-RUN apk add --no-cache gcompat libc6-compat libstdc++ git gawk python3 pipx make unzip bash && pipx install pros-cli && apk cache clean
+RUN apk add --no-cache gcompat libc6-compat libstdc++ git gawk python3 pipx make unzip bash && pipx install pros-cli --preinstall "setuptools<81" && apk cache clean
 
 # Set Environment Variables
 ENV PATH="/arm-none-eabi-toolchain/bin:/root/.local/bin:${PATH}"
-
+# Silences warning when running pros about using setuptools<81
+ENV PYTHONWARNINGS="ignore::UserWarning"
 
 # Setup Build
 ENV PROS_PROJECT=${PROS_PROJECT}
