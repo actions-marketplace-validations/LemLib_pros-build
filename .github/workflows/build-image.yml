@@ -104,7 +104,7 @@ jobs:
   test-action:
     needs: Build_Container
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         repository: [lemlib/lemlib, EZ-Robotics/EZ-Template]
         multithreading: [true, false]
