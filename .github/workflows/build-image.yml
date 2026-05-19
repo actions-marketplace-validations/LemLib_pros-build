@@ -180,7 +180,6 @@ jobs:
     needs:
       [
         Build_Container,
-        test-action
       ]
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
